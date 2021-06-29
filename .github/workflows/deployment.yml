@@ -1,0 +1,11 @@
+name: Deployment
+
+on:
+  deployment
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Execute deployment'
+        run: echo 'OK'
