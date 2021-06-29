@@ -7,6 +7,10 @@ jobs:
   execute:
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: avakar/set-deployment-status@v1
         with:
           state: in_progress
