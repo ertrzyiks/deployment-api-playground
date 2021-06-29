@@ -8,6 +8,7 @@ jobs:
       - uses: avakar/create-deployment@v1
         with:
           auto_merge: false
-          required_contexts: [CI]
+          required_contexts:
+            - CI
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
