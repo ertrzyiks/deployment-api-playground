@@ -7,5 +7,16 @@ jobs:
   execute:
     runs-on: ubuntu-latest
     steps:
+      - uses: avakar/set-deployment-status@v1
+        with:
+          state: in_progress
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Execute deployment'
         run: echo 'OK'
+      - uses: avakar/set-deployment-status@v1
+        with:
+          state: success
+          environment_url: https://google.pl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
