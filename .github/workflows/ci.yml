@@ -9,5 +9,6 @@ jobs:
         with:
           auto_merge: false
           required_contexts: ''
+          environment: 'temploy'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
