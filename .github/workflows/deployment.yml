@@ -5,6 +5,7 @@ on:
 
 jobs:
   execute:
+    if: {{ github.event.deployment.environment === 'temploy2' }}
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
