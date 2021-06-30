@@ -5,15 +5,20 @@ on:
 
 jobs:
   execute:
+    if: github.event.deployment.environment == 'temploy'
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - uses: avakar/set-deployment-status@v1
         with:
           state: in_progress
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Execute deployment'
-        run: echo 'OK'
+        run: echo 1
       - uses: avakar/set-deployment-status@v1
         with:
           state: success
