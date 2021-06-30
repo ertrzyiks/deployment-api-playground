@@ -29,6 +29,5 @@ jobs:
         if: ${{ failure() }}
         with:
           state: failure
-          environment_url: https://google.pl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
