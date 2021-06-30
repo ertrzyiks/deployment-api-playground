@@ -18,10 +18,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Execute deployment'
-        run: echo 1
+        run: echo ok
       - uses: avakar/set-deployment-status@v1
         with:
           state: success
           environment_url: https://google.pl
+          description: 'We are the ones [google](google.pl)'
+          auto_inactive: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: avakar/set-deployment-status@v1
+        if: ${{ failure() }}
+        with:
+          state: failure
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
