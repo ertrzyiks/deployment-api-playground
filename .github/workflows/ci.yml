@@ -25,6 +25,7 @@ jobs:
           auto_merge: false
           required_contexts: 'E2E tests,Unit tests'
           environment: 'temploy'
+          description: 'We are the ones [google](google.pl)'
           transient_environment: true
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
