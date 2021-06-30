@@ -2,13 +2,26 @@ name: CI
 
 on: push
 jobs:
+  unit_tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run
+        run: echo OK
+  e2etests:
+    name: E2E tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run
+        run: echo OK
+
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: avakar/create-deployment@v1
         with:
           auto_merge: false
-          required_contexts: ''
+          required_contexts: 'E2E tests,Unit tests'
           environment: 'temploy'
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
