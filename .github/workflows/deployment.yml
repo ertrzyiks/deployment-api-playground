@@ -18,7 +18,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Execute deployment'
-        run: echo 'OK'
+        run: echo 1
       - uses: avakar/set-deployment-status@v1
         with:
           state: success

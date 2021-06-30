@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run
-        run: exit 1
+        run: echo 1
 
   release:
     runs-on: ubuntu-latest
