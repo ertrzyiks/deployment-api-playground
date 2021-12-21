@@ -20,12 +20,30 @@ jobs:
     needs:
       - unit_tests
     steps:
-      - uses: avakar/create-deployment@v1
-        with:
-          auto_merge: false
-          required_contexts: 'E2E tests,Unit tests'
-          environment: 'temploy'
-          transient_environment: true
-          description: 'temploys'
+      - name: Trigger deploybot
         env:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          USER_EMAIL: a
+          FALLBACK_EMAIL: b
+        run: |
+          HTTP_CODE='0'
+
+          triggerDeployment () {
+            local EMAIL=$1
+            HTTP_CODE=`curl -s -o /dev/null -X GET -w ''%{http_code}'' https://dummy.restapiexample.com/api/v1/employeeasdasdsa`
+            echo "https://dummy.restapiexample.com responded with HTTP Status $HTTP_CODE"
+          }
+
+          echo "Attempt with fallback email: $USER_EMAIL"
+          triggerDeployment $USER_EMAIL
+
+          if [[ "$HTTP_CODE" != "200" ]]; then
+            if [[ "$HTTP_CODE" == "404" ]]; then
+              echo "Attempt with fallback email: $FALLBACK_EMAIL"
+              triggerDeployment $FALLBACK_EMAIL
+            fi
+
+            if [[ "$HTTP_CODE" != "200" ]]; then
+              exit 1
+            fi
+          fi
+      
