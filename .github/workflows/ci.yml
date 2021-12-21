@@ -37,7 +37,7 @@ jobs:
           triggerDeployment $USER_EMAIL
 
           if [[ "$HTTP_CODE" != "200" ]]; then
-            if [[ "$HTTP_CODE" == "429" ]]; then
+            if [[ "$HTTP_CODE" == "404" ]]; then
               echo "Attempt with fallback email: $FALLBACK_EMAIL"
               triggerDeployment $FALLBACK_EMAIL
             fi
